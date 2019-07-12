@@ -7,8 +7,8 @@ const {auth} = require('../config/auth');
 
 
 /* GET users listing. */
-router.get('/',auth(), function(req, res, next) {
-  res.render('welcome',{username: req.session.passport.user.username});
+router.get('/', auth(), (req, res, next) => {
+  res.render('welcome', {username: req.session.passport.user.username});
 });
 
 // Register Form
@@ -59,12 +59,7 @@ router.get('/login', function(req, res){
 });
 
 // Login Process
-// router.post('/login', passport.authenticate('local', { successRedirect: '/', failureRedirect: '/login' }));
-// router.post('/login',  passport.authenticate('local', { failureRedirect: '/login' }), function(req, res) {
-//   res.redirect('/');
-// });
-
-router.post('/login', passport.authenticate('local'), function(req, res) {
+router.post('/login',  passport.authenticate('local', { failureRedirect: '/login' }), function(req, res) {
   res.redirect('/');
 });
 

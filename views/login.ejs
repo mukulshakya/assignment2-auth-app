@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Login</title>
+	<title><%= title %></title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
@@ -39,6 +39,7 @@
 				</div>
 
 				<form class="login100-form validate-form">
+					<div class="message"></div>
 					<div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
 						<span class="label-input100">Username</span>
 						<input id="username" class="input100" type="text" name="username" placeholder="Enter username">
@@ -109,10 +110,14 @@
 							url: '/login',
 							data: {username:username, password:password},
 							success: function(result) {
-								console.log('success');
+								$('.message').html(`<div class="alert alert-success alert-dismissible fade show">
+												<strong>Success!</strong> logged in.. <a href="/">CLICK HERE</a> to redirect.
+											</div>`);
 							},
 							error: function(result) {
-								console.log('error');
+								$('.message').html(`<div class="alert alert-danger alert-dismissible fade show">
+												<strong>Error!</strong> check username or password.
+											</div>`);
 							}
 						})
 					}
