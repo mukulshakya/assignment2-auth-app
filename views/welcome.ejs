@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            color: rgb(249, 255, 254);
+            background: rgb(206, 195, 205);
+            background: linear-gradient(90deg, rgba(158,68,149,1) 0%, rgba(86,173,134,1) 48%, rgba(0,212,255,1) 100%);
+        }
+        h1 {
+            font-size: 4em;
+        }
+        .div1 {
+            margin-top: 100px;
+        }
+        p {
+            font-size: 2em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="col-lg-6 mb-4 div1">
+            <h1>Welcome! <%= username %>.</h1>
+            <p class="mb-4">You've been Logged in Successfully!</p>
+            <a href="/logout"><button class="btn btn-primary">Logout</button></a>
+        </div>
+    </div>
+</body>
+</html>
