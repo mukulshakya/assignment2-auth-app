@@ -119,10 +119,12 @@
 						success: function(result) {
 							console.log(result);
 							if(result.msg === "success") {
-								location.href = '/login';
-								// $('.message').html(`<div class="alert alert-${result.msg} alert-dismissible fade show">
-								// 							<strong>Success!</strong> ${result.msg1} <a href="/login" style="font-weight: bold;">CLICK HERE</a> to login
-								// 						</div>`);
+								$('.message').html(`<div class="alert alert-${result.msg} alert-dismissible fade show">
+															<strong>Success!</strong> ${result.msg1}
+														</div>`);
+								setTimeout(function() {
+									location.href = '/login';
+								},1500);
 							}
 							if(result.msg === "danger") {
 								$('.message').html(`<div class="alert alert-${result.msg} alert-dismissible fade show">
