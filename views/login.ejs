@@ -58,6 +58,11 @@
 								Create new account.
 							</a>
 						</div>
+						<div>
+							<a href="/forgotpassword" class="txt1">
+								Forgot password ?
+							</a>
+						</div>
 					</div>
 
 					<div class="container-login100-form-btn">
@@ -110,11 +115,21 @@
 							url: '/login',
 							data: {username:username, password:password},
 							success: function(result) {
-								$('.message').html(`<div class="alert alert-success alert-dismissible fade show">
-												<strong>Success!</strong> logged in.. <a href="/">CLICK HERE</a> to redirect.
+								console.log(result.message)
+								// $('.message').html(`<div class="alert alert-success alert-dismissible fade show">
+								// 				<strong>Success!</strong> logged in.. <a href="/">CLICK HERE</a> to redirect.
+								// 			</div>`);
+								if(result.login === "success"){
+									location.href = '/';
+								} 
+								else {
+									$('.message').html(`<div class="alert alert-danger alert-dismissible fade show">
+												<strong>Error!</strong> check username or password.
 											</div>`);
+								}
 							},
 							error: function(result) {
+								console.log('error login')
 								$('.message').html(`<div class="alert alert-danger alert-dismissible fade show">
 												<strong>Error!</strong> check username or password.
 											</div>`);
