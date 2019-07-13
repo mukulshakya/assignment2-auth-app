@@ -7,9 +7,7 @@ if(process.env.NODE_ENV == "production"){
 } 
 else if (process.env.NODE_ENV == "development"){
     conUrl = 'mongodb://127.0.0.1:27017/assign2-auth';
-} 
-
-console.log(conUrl)
+}
 
 mongoose.connect(conUrl, {
     useNewUrlParser: true,
