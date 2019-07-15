@@ -7,4 +7,7 @@
 - Navigate to `localhost:3000/forgotpassword` to reset password.
 
 
-**This project can also be viewed on this link : ** https://assign-2-auth.herokuapp.com/
+#### This project can also be viewed on this link : https://assign-2-auth.herokuapp.com/
+
+![nodemailer format](https://i.ibb.co/RymnMP4/Capture.png)
+format of mail sent after Login, Registration or Password reset
