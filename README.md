@@ -10,4 +10,5 @@
 #### This project can also be viewed on this link : https://assign-2-auth.herokuapp.com/
 
 ![nodemailer format](https://i.ibb.co/RymnMP4/Capture.png)
-format of mail sent after Login, Registration or Password reset
+
+###### Image shows format of mail sent after Login, Registration or Password reset
