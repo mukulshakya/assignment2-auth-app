@@ -12,7 +12,7 @@
 
 ---------------------------------------------------------------------------------------------------------------------------
 
-
+======
 ![nodemailer format](https://i.ibb.co/RymnMP4/Capture.png)
 
 ###### Image shows format of mail sent after Login, Registration or Password reset
