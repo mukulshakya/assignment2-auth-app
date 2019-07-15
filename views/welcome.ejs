@@ -31,7 +31,7 @@
 <body>
     <div class="container mt-5">
         <div class="mb-4 div1">
-            <h1>Welcome! <%= username.toUpperCase() %>.</h1>
+            <h1>Welcome! <%= email.toUpperCase().split('@')[0] %>.</h1>
             <p class="mb-4">You've been Logged in Successfully!</p>
             <a href="/logout"><button class="btn btn-primary">Logout</button></a>
         </div>

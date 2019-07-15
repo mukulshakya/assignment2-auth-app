@@ -4,9 +4,10 @@ const bcrypt = require('bcryptjs');
 const passport = require('passport');
 const User = require('../models/user');
 const {auth} = require('../config/auth');
+const {mailFunc} = require('../config/nodemailer');
 
 router.get('/', auth(), (req, res) => {
-  res.render('welcome', {username: req.session.passport.user.username});
+  res.render('welcome', {email: req.session.passport.user.email});
 });
 
 // Register Form
@@ -17,10 +18,10 @@ router.get('/register', (req, res) => {
 // Register Process
 router.post('/register',async (req, res) => {
 
-  let duplicateUser = await User.findOne({username: req.body.username});
+  let duplicateUser = await User.findOne({email: req.body.email});
   
   if(duplicateUser) {
-    res.send({msg:"danger",msg1:"username not available"});
+    res.send({msg:"danger",msg1:"email already taken"});
   }
   else {
     bcrypt.genSalt(10, function(err, salt){
@@ -29,12 +30,18 @@ router.post('/register',async (req, res) => {
           res.send({msg:"danger",msg1:"some error occurred"});
         }
 
-        let newUser = new User({username: req.body.username, password: hash});
+        let newUser = new User({email: req.body.email, password: hash});
 
         newUser.save()
           .then((user) => {
-            console.log(user);
             res.send({msg:"success",msg1:"Registered.. "});
+
+            let mailData = {
+              email: user.email,
+              subject: 'Registration Succesful',
+              mailbody: 'Hi, you\'ve been registered succesfully on Assignment 2 on',
+            }
+            mailFunc(mailData);
           })
           .catch((err) => {
             console.log(err);
@@ -54,6 +61,12 @@ router.get('/login', (req, res) => {
 // Login Process
 router.post('/login',  passport.authenticate('local', { failureRedirect: '/login' }), (req, res) => {
   res.send({login: 'success'});
+  let mailData = {
+    email: req.session.passport.user.email,
+    subject: 'Login Notification',
+    mailbody: 'Hi, new login detected on Assignment 2 on',
+  }
+  mailFunc(mailData);
 });
 
 // Forgot password Form
@@ -63,10 +76,10 @@ router.get('/forgotpassword', (req, res) => {
 
 // Forgot password process
 router.post('/forgotpassword', async (req, res) => {
-  let user = await User.findOne({username: req.body.username});
+  let user = await User.findOne({email: req.body.email});
 
   if(!user) {
-    res.send({msg:"danger",msg1:"username not valid"})
+    res.send({msg:"danger",msg1:"email not valid"})
   }
   else {
     bcrypt.compare(req.body.oldPassword, user.password, function(err, isMatch) {
@@ -79,13 +92,18 @@ router.post('/forgotpassword', async (req, res) => {
               return res.send({msg:"danger",msg1:"some error occurred"});
             }
     
-            // let newUser = new User({username: req.body.username, password: hash});
             user.password = hash;
-    
+
             user.save()
               .then((user) => {
-                console.log(user);
                 res.send({msg:"success",msg1:"Password updated"});
+
+                let mailData = {
+                  email: user.email,
+                  subject: 'Password Updated',
+                  mailbody: 'Hi, your password have been updated on Assignment 2 on',
+                }
+                mailFunc(mailData);
               })
               .catch((err) => {
                 console.log(err);

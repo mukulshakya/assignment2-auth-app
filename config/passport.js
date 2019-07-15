@@ -5,12 +5,13 @@ const User = require('../models/user');
 module.exports = function(passport){
   passport.use(new LocalStrategy(
     function(username, password, done) {
-      User.findOne({ username: username }, function (err, user) {
+      console.log('entered passport')
+      User.findOne({ email: username }, function (err, user) {
         if (err) { return done(err); }
 
         if (!user) {
-            console.log('incorrect username')
-          return done(null, false, { message: 'Incorrect username.' });
+          console.log('incorrect email')
+          return done(null, false, { message: 'Incorrect email.' });
         }
 
         bcrypt.compare(password, user.password, function(err, isMatch) {
